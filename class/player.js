@@ -6,6 +6,12 @@ class Player {
         this.items = [];
     }
 
+    // Method for removing item in Player's inventory
+    removeItem(name) {
+        let index = this.items.findIndex(item => item == name);
+        return this.items.splice(index, 1)[0];
+    }
+
     move(direction) {
 
         const nextRoom = this.currentRoom.getRoomInDirection(direction);
@@ -32,14 +38,11 @@ class Player {
     }
 
     takeItem(itemName) {
-
-        // Fill this in
-
+        return this.items.push(this.currentRoom.removeItem(itemName))
     }
 
     dropItem(itemName) {
-
-        // Fill this in
+        return this.currentRoom.addItem(this.removeItem(itemName))
     }
 
     eatItem(itemName) {
@@ -48,8 +51,11 @@ class Player {
     }
 
     getItemByName(name) {
-
-        // Fill this in
+        for (let item of this.items) {
+            if (item.name == name) {
+                return this.removeItem(name)
+            }
+        }
     }
 }
 
