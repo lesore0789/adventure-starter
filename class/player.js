@@ -1,3 +1,5 @@
+const {Food} = require('./food')
+
 class Player {
 
     constructor(name, startingRoom) {
@@ -46,8 +48,11 @@ class Player {
     }
 
     eatItem(itemName) {
-        // Fill this in
-
+        this.items.forEach((item, index) => {
+            if (item.name == itemName && item instanceof Food) {
+                return this.items.splice(index, 1)
+            }
+        })
     }
 
     getItemByName(name) {
