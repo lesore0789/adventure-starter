@@ -39,8 +39,18 @@ class Room {
         this.exits[direction] = connectingRoom;
     }
 
+    // Method for removing item in Room items array
+    removeItem(name) {
+        let index = this.items.findIndex(item => item == name);
+        return this.items.splice(index, 1)[0]
+    }
+
     getRoomInDirection(direction) {
         return this.exits[direction];
+    }
+
+    addItem(item) {
+        this.items.push(item)
     }
 
     getItemByName(name) {
